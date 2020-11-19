@@ -3,8 +3,36 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <EditText
+        android:id="@+id/enter_text_field"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="10dp"
+        android:hint="@string/enter_book_title_or_author_name"
+        android:inputType="text"
+        android:textSize="15sp" />
 
-    <!-- Layout for a list of books -->
+    <Button
+        android:id="@+id/search_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="60dp"
+        android:padding="10dp"
+        android:text="@string/search"
+        android:textSize="15sp" />
+
+    <ListView
+        android:id="@+id/list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="12dp"
+        android:layout_marginEnd="36dp"
+        android:layout_marginTop="100dp"
+        android:divider="@null"
+        android:dividerHeight="0dp"
+        android:orientation="vertical" />
 
     <!-- Empty view is only visible when the list has no items. -->
     <TextView
@@ -12,51 +40,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:textAppearance="?android:textAppearanceMedium"
-        android:text="No books to display"/>
+        android:text="@string/no_books_available"
+        android:textAppearance="?android:textAppearanceMedium" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="84dp"
-        android:layout_toEndOf="@+id/empty_view"
-        android:orientation="vertical">
-
-    </LinearLayout>
-
-    <ListView
-        android:id="@+id/list"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="12dp"
-        android:layout_marginEnd="46dp"
-        android:layout_toStartOf="@+id/empty_view"
-        android:divider="@null"
-        android:dividerHeight="0dp"
-        android:orientation="vertical" />
-
-    <EditText
-        android:id="@+id/enter_text_field"
+    <ProgressBar
+        android:id="@+id/loading_indicator"
+        style="@style/Widget.AppCompat.ProgressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="20dp"
-        android:hint="Enter Title or Author Name"
-        android:inputType="text" />
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true" />
 
-
-    <Button
-        android:id="@+id/search_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginRight="5dp"
-        android:layout_marginStart="400dp"
-        android:padding="10dp"
-        android:text="Search"
-        android:textSize="15sp" />
 
 </RelativeLayout>

@@ -19,10 +19,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Maino96-10022 on 11/26/2016.
+ * Created by Anastasia Annin on 11/26/2016.
  */
 
-public class QueryUtils {
+public class QueryUtils
+{
     /**
      * Tag for the log messages
      */
@@ -31,15 +32,18 @@ public class QueryUtils {
     public QueryUtils() {
     }
 
-    private static List<Book> fetchBookData(String requestUrl) {
+    public static List<Book> fetchBookData(String requestUrl)
+    {
         // Create URL object
         URL url = createUrl(requestUrl);
 
         // Perform HTTP request to the URL and receive a JSON response back
         String jsonResponse = null;
-        try {
+        try
+        {
             jsonResponse = makeHttpRequest(url);
-        } catch (IOException e) {
+        } catch (IOException e)
+        {
             Log.e(LOG_TAG, "Problem making the HTTP request.", e);
         }
 
@@ -54,11 +58,14 @@ public class QueryUtils {
     /**
      * Returns new URL object from the given string URL.
      */
-    private static URL createUrl(String stringUrl) {
+    private static URL createUrl(String stringUrl)
+    {
         URL url = null;
-        try {
+        try
+        {
             url = new URL(stringUrl);
-        } catch (MalformedURLException e) {
+        } catch (MalformedURLException e)
+        {
            return null;
         }
         return url;
@@ -67,17 +74,20 @@ public class QueryUtils {
     /**
      * Make an HTTP request to the given URL and return a String as the response.
      */
-    private static String makeHttpRequest(URL url) throws IOException {
+    private static String makeHttpRequest(URL url) throws IOException
+    {
         String jsonResponse = "";
 
         // If the URL is null, then return early.
-        if (url == null) {
+        if (url == null)
+        {
             return jsonResponse;
         }
 
         HttpURLConnection urlConnection = null;
         InputStream inputStream = null;
-        try {
+        try
+        {
             urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setReadTimeout(10000 /* milliseconds */);
             urlConnection.setConnectTimeout(15000 /* milliseconds */);
@@ -86,19 +96,25 @@ public class QueryUtils {
 
             // If the request was successful (response code 200),
             // then read the input stream and parse the response.
-            if (urlConnection.getResponseCode() == 200) {
+            if (urlConnection.getResponseCode() == 200)
+            {
                 inputStream = urlConnection.getInputStream();
                 jsonResponse = readFromStream(inputStream);
-            } else {
+            } else
+                {
                 Log.e(LOG_TAG, "Error response code: " + urlConnection.getResponseCode());
             }
-        } catch (IOException e) {
+        } catch (IOException e)
+        {
             Log.e(LOG_TAG, "Problem retrieving the book JSON results.", e);
-        } finally {
-            if (urlConnection != null) {
+        } finally
+        {
+            if (urlConnection != null)
+            {
                 urlConnection.disconnect();
             }
-            if (inputStream != null) {
+            if (inputStream != null)
+            {
                 // Closing the input stream could throw an IOException, which is why
                 // the makeHttpRequest(URL url) method signature specifies than an IOException
                 // could be thrown.
@@ -112,13 +128,16 @@ public class QueryUtils {
      * Convert the {@link InputStream} into a String which contains the
      * whole JSON response from the server.
      */
-    private static String readFromStream(InputStream inputStream) throws IOException {
+    private static String readFromStream(InputStream inputStream) throws IOException
+    {
         StringBuilder output = new StringBuilder();
-        if (inputStream != null) {
+        if (inputStream != null)
+        {
             InputStreamReader inputStreamReader = new InputStreamReader(inputStream, Charset.forName("UTF-8"));
             BufferedReader reader = new BufferedReader(inputStreamReader);
             String line = reader.readLine();
-            while (line != null) {
+            while (line != null)
+            {
                 output.append(line);
                 line = reader.readLine();
             }
@@ -126,14 +145,16 @@ public class QueryUtils {
         return output.toString();
     }
 
-    public static List<Book> extractFeatureFromJson(String bookJSON) {
+    public static List<Book> extractFeatureFromJson(String bookJSON)
+    {
         // If the JSON string is empty or null, then return early.
-        if (TextUtils.isEmpty(bookJSON)) {
+        if (TextUtils.isEmpty(bookJSON))
+        {
             return null;
         }
         List<Book> books = new ArrayList<>();
-        try {
-
+        try
+        {
             // Create a JSONObject from the JSON response string
             JSONObject baseJsonResponse = new JSONObject(bookJSON);
 
@@ -142,7 +163,8 @@ public class QueryUtils {
             JSONArray bookArray = baseJsonResponse.getJSONArray("items");
 
 // For each earthquake in the earthquakeArray, create an {@link Earthquake} object
-            for (int i = 0; i < bookArray.length(); i++) {
+            for (int i = 0; i < bookArray.length(); i++)
+            {
                 // Get a single book at position i within the list of books
                 JSONObject currentBook = bookArray.getJSONObject(i);
                 JSONObject volumeInfo = currentBook.getJSONObject("volumeInfo");
@@ -163,7 +185,8 @@ public class QueryUtils {
 
             }
 
-        } catch (JSONException e) {
+        } catch (JSONException e)
+        {
             // If an error is thrown when executing any of the above statements in the "try" block,
             // catch the exception here, so the app doesn't crash. Print a log message
             // with the message from the exception.

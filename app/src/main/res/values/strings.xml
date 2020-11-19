@@ -1,12 +1,25 @@
 <resources>
     <string name="app_name">BookListingApp</string>
 
-    <!-- Text to display in the list when there are no books [CHAR LIMIT=NONE] -->
-    <string name="no_books">No books available.</string>
+    <!-- Text to display in the list when there are no books to display [CHAR LIMIT=NONE] -->
+    <string name="no_books_available">No books available</string>
 
     <!-- Error message when there is no internet connectivity [CHAR LIMIT=NONE] -->
-      <string name="no_internet_connection">No internet connection.</string>
+    <string name="no_internet_connection">No internet connection.</string>
 
     <!-- Error message when no text is entered [CHAR LIMIT=NONE] -->
     <string name="no_text_entered">No text entered.</string>
+
+    <!--book title -->
+    <string name="Harry_Potter">Harry Potter</string>
+
+    <!-- author name -->
+    <string name="jk_rowling">J.K._Rowling</string>
+
+    <!-- edit text input -->
+    <string name="enter_book_title_or_author_name">Enter Book Title or Author Name</string>
+
+    <!-- search button text -->
+    <string name="search">Search</string>
+
 </resources>
